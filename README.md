@@ -17,14 +17,14 @@ This project demonstrates the integration of Stripe for handling online payments
    git clone https://github.com/Bhavya022/stripe-payment.git
 Navigate to the project directory:
 
-```bash
+bash
 cd stripe-payment-integration
 Install dependencies:
 
-```bash
+bash
 npm install
 Set up your Stripe API key:
-
+bash
 Create a .env file in the root directory and add your Stripe API key:
 
 makefile
@@ -97,9 +97,8 @@ Get All Payment Intents
 Endpoint: GET /api/v1/payment/get_all_payment_intents
 
 Response:
-
+bash
 json
-Copy code
 {
   "message": "List of PaymentIntents retrieved successfully",
   "paymentIntents": [
