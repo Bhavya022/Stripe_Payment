@@ -47,17 +47,48 @@ class PaymentController {
   // //   }
   // }
  
-  static async capturePaymentIntent(req, res) {
-    const intentId = req.params.id;
-
-    try {
-        const capturedIntent = await PaymentModel.capturePaymentIntent(intentId); 
-        console.log(capturedIntent)
-        res.json({ message: 'PaymentIntent captured successfully', intent: capturedIntent });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Failed to capture PaymentIntent' });
-    }
+  
+    static async capturePaymentIntent(req, res) {
+      const intentId = req.params.id;
+  
+      try {
+          const paymentIntent = await PaymentModel.getPaymentIntentById(intentId);
+  
+          console.log('PaymentIntent status:', paymentIntent.status);
+  
+          if (paymentIntent.status === 'requires_payment_method') {
+              // Handle the case where payment method is required
+              return res.status(400).json({
+                  success: false,
+                  error: 'Cannot capture PaymentIntent as it requires a payment method. Please provide a valid payment method.',
+              });
+          }  
+  
+          if (paymentIntent.status !== 'requires_capture') {
+              // Handle the case where PaymentIntent is not in a valid state for capturing
+              return res.status(400).json({
+                  success: false,
+                  error: `Cannot capture PaymentIntent with current status: ${paymentIntent.status}`,
+              });
+          }
+  
+          // Proceed with capturing for other valid statuses
+          const capturedIntent = await PaymentModel.capturePaymentIntent(intentId);
+  
+          return res.json({
+              success: true,
+              message: 'PaymentIntent captured successfully',
+              intent: capturedIntent,
+          });
+      } catch (error) {
+          console.error(error);
+          return res.status(500).json({
+              success: false,
+              error: 'Failed to capture PaymentIntent',
+          });
+      }
+  
+  
 }
   static async createRefund(req, res) {
     const intentId = req.params.id;
