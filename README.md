@@ -17,11 +17,11 @@ This project demonstrates the integration of Stripe for handling online payments
    git clone https://github.com/Bhavya022/stripe-payment.git
 Navigate to the project directory:
 
-
+```bash
 cd stripe-payment-integration
 Install dependencies:
 
-
+```bash
 npm install
 Set up your Stripe API key:
 
