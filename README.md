@@ -17,24 +17,23 @@ This project demonstrates the integration of Stripe for handling online payments
    git clone https://github.com/Bhavya022/stripe-payment.git
 Navigate to the project directory:
 
-bash
+
 cd stripe-payment-integration
 Install dependencies:
 
-bash
+```bash
 npm install
 Set up your Stripe API key:
-bash
+
 Create a .env file in the root directory and add your Stripe API key:
 
 makefile
-Copy code
+```bash
 STRIPE_API_KEY=your_stripe_api_key
 Usage
 Start the server:
 
-bash
-Copy code
+```bash
 npm start
 Use an API testing tool (e.g., Thunder Client, Postman) to test the provided endpoints.
 
@@ -44,7 +43,7 @@ Endpoint: POST /api/v1/payment/create_payment_intent
 
 Request Body:
 
-
+```bash
 {
   "amount": 2000,
   "currency": "usd",
@@ -55,18 +54,19 @@ Request Body:
   }
 }
 Response:
-
+```bash
 
 {
   "payment_intent_id": "pi_1234567890",
   "payment_method_types": ["card"]
 }
-Get Client Secret
+Get Client Secret 
+```bash
 Endpoint: GET /api/v1/payment/get_client_secret/:id
 
 Response:
 
-
+```bash
 {
   "client_secret": "pi_1234567890_secret_abcdefghijk"
 }
