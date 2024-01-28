@@ -105,6 +105,8 @@ json
     // List of payment intents
   ]
 }
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+
+POSTMAN COLLECTION API
+https://elements.getpostman.com/redirect?entityId=24864398-eb870473-434a-4abc-90fe-b86bf34b7938&entityType=collection
+
 
